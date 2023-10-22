@@ -8,24 +8,6 @@ export const Layout = styled.main`
   color: #010101;
 `;
 
-export const BtnOpen = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid #000;
-  background-color: green;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  outline: none;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover,
-  :focus {
-    transform: scale(1.03);
-  }
-`;
 
 export const Contacts = styled.div`
   display: flex;
@@ -50,11 +32,15 @@ export const BtnClose = styled.button`
   right: 20px;
   cursor: pointer;
   outline: none;
+  &:hover,
+  :focus {
+    transform: scale(1.1);
+  }
 `;
 
 export const Title = styled.h2`
   font-size: 45px;
-  color: green;
+  color: #4287f5;
   -webkit-text-stroke: 1.3px #000;
   margin-bottom: 10px;
 `;

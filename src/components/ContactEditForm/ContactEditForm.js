@@ -12,7 +12,8 @@ import {
   StyledErrorMessage,
   Button,
 } from './ContactEditForm.styled';
-import { selectError, selectIsLoading } from 'redux/selectors';
+import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import toast from 'react-hot-toast';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 const phoneRegExp =
@@ -27,7 +28,7 @@ const schema = Yup.object().shape({
       nameRegExp,
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     ),
-  phone: Yup.string()
+  number: Yup.string()
     .matches(
       phoneRegExp,
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
@@ -40,8 +41,9 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
   const [contactToEdit, setContactToEdit] = useState({
     id: contact.id,
     name: contact.name,
-    phone: contact.phone,
+    number: contact.number,
   });
+  const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
@@ -51,22 +53,32 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
     if (targetName === 'name') {
       setContactToEdit(prevState => ({ ...prevState, name: values }));
     }
-    if (targetName === 'phone') {
-      setContactToEdit(prevState => ({ ...prevState, phone: values }));
+    if (targetName === 'number') {
+      setContactToEdit(prevState => ({ ...prevState, number: values }));
     }
   };
+
+  const ToastEditSuccess = () => toast.success('Contact edit success');
+  const toastAlreadyHaveContact = (name) =>
+    toast.error(`${name} is already in contact`);
 
   return (
     <Formik
       initialValues={{
         name: `${contact.name}`,
-        phone: `${contact.phone}`,
+        number: `${contact.number}`,
       }}
       validationSchema={schema}
-      onSubmit={() => {
-        dispatch(editContact(contactToEdit)) &&
-          toastEdit() &&
-          setTimeout(() => onClose(), 500);
+      onSubmit={values => {
+        contacts.some(
+          contact =>
+            contact.name.toLowerCase().trim() ===
+            values.name.toLowerCase().trim()
+        )
+          ? toastAlreadyHaveContact(values.name)
+          : dispatch(editContact(contactToEdit)) &&
+            ToastEditSuccess() &&
+            setTimeout(() => onClose(), 500);
       }}
     >
       <StyledForm>
@@ -79,16 +91,16 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
 
         <Label onChange={handleChange}>
           Number <AiOutlinePhone />
-          <StyledField name="phone" />
+          <StyledField name="number" />
           <br />
-          <StyledErrorMessage name="phone" component="div" />
+          <StyledErrorMessage name="number" component="div" />
         </Label>
 
         <Button type="submit">
           Edit contact
           {isLoading && !error && (
             <RotatingLines
-              strokeColor="grey"
+              strokeColor="white"
               strokeWidth="5"
               animationDuration="0.75"
               width="20"

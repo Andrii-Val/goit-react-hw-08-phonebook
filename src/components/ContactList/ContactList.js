@@ -1,23 +1,24 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
+import toast from 'react-hot-toast';
 import { selectVisibleContacts } from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
 import { AiOutlineEdit, AiOutlineDelete, AiOutlineClose } from 'react-icons/ai';
-
 import {
   List,
   ContactItem,
-  Span,
+  Div,
   ActionBtn,
   Stub,
   BtnContainer,
+  PhoneNumber,
 } from './ContactList.styled';
 import { BtnClose } from '../Loyaut';
-import { customStyles } from '../App';
+import { customStyles } from '../../pages/Contacts/Contacts';
 import { ContactEditForm } from 'components/ContactEditForm/ContactEditForm';
 
-export const ContactList = ({ toastDelete, toastEdit }) => {
+export const ContactList = () => {
   const contacts = useSelector(selectVisibleContacts);
   const dispatch = useDispatch();
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
@@ -27,11 +28,12 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
     setContact({
       id: e.currentTarget.id,
       name: e.currentTarget.name,
-      phone: e.currentTarget.value,
+      number: e.currentTarget.value,
     });
     setIsModalEditOpen(true);
   };
   const closeModalEdit = () => setIsModalEditOpen(false);
+  const toastDelete = () => toast.success('Contact has been deleted from your phone book');
 
   return (
     <>
@@ -41,28 +43,32 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
             .sort((a, b) => a.name.localeCompare(b.name))
             .map(contact => (
               <ContactItem key={contact.id}>
-                <Span>
-                  {contact.name}: {contact.phone}
-                  <BtnContainer>
-                    <ActionBtn
-                      type="button"
-                      onClick={openModalEdit}
-                      id={contact.id}
-                      name={contact.name}
-                      value={contact.phone}
-                    >
-                      <AiOutlineEdit size={27} />
-                    </ActionBtn>
-                    <ActionBtn
-                      type="button"
-                      onClick={() => {
-                        dispatch(deleteContact(contact.id)) && toastDelete();
-                      }}
-                    >
-                      <AiOutlineDelete size={27} />
-                    </ActionBtn>
-                  </BtnContainer>
-                </Span>
+                <Div>
+                  <p>{contact.name}</p>
+                  <PhoneNumber href={`tel:${contact.number}`}>
+                    {contact.number}
+                  </PhoneNumber>
+                </Div>
+
+                <BtnContainer>
+                  <ActionBtn
+                    type="button"
+                    onClick={openModalEdit}
+                    id={contact.id}
+                    name={contact.name}
+                    value={contact.number}
+                  >
+                    <AiOutlineEdit size={27} />
+                  </ActionBtn>
+                  <ActionBtn
+                    type="button"
+                    onClick={() => {
+                      dispatch(deleteContact(contact.id)) && toastDelete();
+                    }}
+                  >
+                    <AiOutlineDelete size={27} />
+                  </ActionBtn>
+                </BtnContainer>
               </ContactItem>
             ))
         ) : (
@@ -79,7 +85,6 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
         </BtnClose>
         <ContactEditForm
           onClose={closeModalEdit}
-          toastEdit={toastEdit}
           style={customStyles}
           contact={contact}
         />
