@@ -21,7 +21,7 @@ export const BtnClose = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #f70202;
+  background-color: green;
   color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;

@@ -30,7 +30,7 @@ export const Button = styled.button`
   margin: 20px auto 0;
   border: none;
   border-radius: 4px;
-  background-color: #4287f5;
+  background-color: green;
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -39,6 +39,6 @@ export const Button = styled.button`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   :focus {
-    background-color: #1560f5;
+    background-color: green;
   }
 `;

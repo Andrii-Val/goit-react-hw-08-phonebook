@@ -34,7 +34,7 @@ export const BtnContainer = styled.div`
 
 export const ActionBtn = styled.button`
   border: none;
-  background-color: #ebebed; 
+  background-color: green; 
   display: flex;
   align-items: center;
   cursor: pointer;
