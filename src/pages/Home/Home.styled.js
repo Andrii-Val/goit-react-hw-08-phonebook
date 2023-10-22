@@ -83,7 +83,7 @@ export const BtnSingUp = styled(Link)`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   :focus {
-    background-color: #1560f5;
+    background-color: creen;
   }
 `;
 
@@ -106,7 +106,7 @@ export const BtnLogined = styled(Link)`
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   :focus {
-    background-color: #1560f5;
+    background-color: green;
     color: white;
   }
 `;
