@@ -48,7 +48,7 @@ export const BtnLogIn = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid #4287f5;
+  border: 1.5px solid green;
   border-radius: 4px;
   font-weight: 500;
   font-size: 16px;
@@ -66,7 +66,7 @@ export const BtnLogIn = styled(Link)`
 
 export const BtnSingUp = styled(Link)`
   text-decoration: none;
-  background-color: #4287f5;
+  background-color: green;
   color: white;
   width: 200px;
   height: 50px;
@@ -95,7 +95,7 @@ export const BtnLogined = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid #4287f5;
+  border: 1.5px solid green;
   border-radius: 4px;
   font-weight: 500;
   font-size: 16px;

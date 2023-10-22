@@ -13,7 +13,7 @@ export const Header = styled.header`
   padding-top: 12px;
   padding-bottom: 12px;
   color: #fff;
-  background-color: #4287f5;
+  background-color: green;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   position: relative;
@@ -24,7 +24,7 @@ export const BtnSingOut = styled.button`
   position: absolute;
   right: 35px;
   border: none;
-  background-color: #4287f5;
+  background-color: green;
   color: #fff;
   cursor: pointer;
   font-size: 18px;
@@ -44,7 +44,7 @@ export const BtnOpen = styled.button`
   bottom: 50px;
   border-radius: 50%;
   border: 1px solid #000;
-  background-color: #4287f5;
+  background-color: green;
   color: #fff;
   display: flex;
   justify-content: center;
