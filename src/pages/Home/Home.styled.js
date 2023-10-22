@@ -27,7 +27,7 @@ export const Title = styled.h1`
 `;
 
 export const TitleDecor = styled.span`
-  color: #4287f5;
+  color: green;
   -webkit-text-stroke: 1.3px #000;
 `;
 
@@ -59,7 +59,7 @@ export const BtnLogIn = styled(Link)`
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   :focus {
-    background-color: #1560f5;
+    background-color: green;
     color: white;
   }
 `;
