@@ -24,7 +24,7 @@ export const Div = styled.div`
 
 export const PhoneNumber = styled.a`
   text-decoration: none;
-  color: #4287f5;
+  color: green;
 `;
 
 export const BtnContainer = styled.div`
@@ -42,7 +42,7 @@ export const ActionBtn = styled.button`
   &:hover,
   :focus {
     transform: scale(1.2);
-    color: #4287f5;
+    color: green;
   }
 `;
 
